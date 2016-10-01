@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="helloAngular">
+    <head>
+        <title>Angular</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="angular.min.js"></script>
+        <script>
+            
+            /*definindo módulo angular(nome, array de dependencias)*/
+            angular.module("helloAngular", []);
+            
+            /*Angular trabalha com estrutura MVC
+             *Criando controller da aplicação(nomeController, função(paramentro de ligação view controller))*/
+            angular.module("helloAngular").controller("mainController", function($scope){
+                
+                $scope.message = 'Angular JS';
+                
+                $scope.testeNg = 'Teste NgBind';
+                
+                /*array de objetos*/
+                $scope.list    = [
+                    {name: 'Pedro', telefone: '99916533', email: 'pedro@gmail.com'},
+                    {name: 'Maria', telefone: '55996533', email: 'maria@gmail.com'},
+                    {name: 'Ana', telefone: '98665533', email: 'ana@gmail.com'},
+                    {name: 'Gustavo', telefone: '96998866', email: 'gustavo@gmail.com'}
+                ]; 
+                
+                /*definindo função*/
+                $scope.clicar = function(){
+                    $scope.message = 'Main Function Angular JS'
+                }
+            });
+            
+        </script>
+    </head>
+    <body>
+        
+        <!--diretiva controller pode colocar em qualquer elemento html-->
+        <section ng-controller="mainController">
+            <!--apresentando variaveis criadas pelo angular-->
+            <h1>{{message}}</h1>
+            
+            <p ng-bind="testeNg"></p>
+            
+            <!--executando array-->
+            <div>
+                <p ng-repeat="li in list">
+                    {{li.name}} - {{li.telefone}} - {{li.email}}
+                </p>
+            </div>
+            
+            <!--executando função clicar-->
+            <button ng-click="clicar();">Enviar</button>
+            
+            <input type="text" ng-model="message">
+            
+        </section>
+        
+    </body>
+</html>
